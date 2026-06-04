@@ -2,9 +2,8 @@
 
 import { useActionState } from "react"
 import { submitRequest } from "@/actions/requests"
-import { ComponentType } from "@/lib/generated/prisma/enums"
 
-const COMPONENT_TYPES = Object.values(ComponentType)
+const COMPONENT_TYPES = ["Layout", "Form", "Navigation", "Display", "Feedback"] as const
 
 const label: React.CSSProperties = {
   display: "block",
