@@ -1,4 +1,4 @@
-// app/page.tsx — Server Component, SSG
+import { prisma } from "@/lib/db"
 import { Hero } from "@/components/Hero"
 import { ShowcaseSection } from "@/components/showcase/ShowcaseSection"
 import { QuotesPaper } from "@/components/QuotesPaper"
@@ -6,25 +6,17 @@ import { AvatarStack } from "@/components/AvatarStack"
 import { JokeViewer } from "@/components/JokeViewer"
 import { CatSwiper } from "@/components/CatSwiper"
 
-const BASE = process.env.NEXT_PUBLIC_URL
-
 async function getAllData() {
-  const [quotes, users, jokes, cats] = await Promise.all([
-    fetch(`${BASE}/api/quotes`, { cache: "force-cache" }).then(r => r.json()),
-    fetch(`${BASE}/api/users`, { cache: "force-cache" }).then(r => r.json()),
-    fetch(`${BASE}/api/jokes`, { cache: "force-cache" }).then(r => r.json()),
-    fetch(`${BASE}/api/cats`,  { cache: "force-cache" }).then(r => r.json()),
+  const [quotes, users, jokes] = await Promise.all([
+    prisma.quote.findMany(),
+    prisma.user.findMany(),
+    prisma.joke.findMany(),
   ])
-  return {
-    quotes: quotes.data,
-    users:  users.data,
-    jokes:  jokes.data,
-    cats:   cats.data,
-  }
+  return { quotes, users, jokes }
 }
 
 export default async function HomePage() {
-  const { quotes, users, jokes, cats } = await getAllData()
+  const { quotes, users, jokes } = await getAllData()
 
   return (
     <main>
