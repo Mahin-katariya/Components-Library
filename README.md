@@ -408,5 +408,5 @@ Open `http://localhost:3000`.
 | Database | Neon (serverless PostgreSQL) | Serverless-native, free tier, works perfectly on Vercel |
 | ORM | Prisma | Type-safe queries, schema-driven migrations |
 | Cloud Storage | Cloudinary | Images stored and served via CDN, not in the database |
-| Styling | Tailwind CSS + inline styles | Utility-first, scoped where needed |
+| Styling | inline styles | Utility-first, scoped where needed |
 | Deployment | Vercel | Native Next.js platform, automatic GitHub deploys |
